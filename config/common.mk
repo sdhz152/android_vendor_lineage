@@ -77,6 +77,14 @@ $(foreach f,$(wildcard vendor/lineage/prebuilt/common/etc/init/*.rc),\
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
+# Phonelocation!
+PRODUCT_COPY_FILES +=  \
+    vendor/lineage/prebuilt/common/media/location/suda-phonelocation.dat:system/media/location/suda-phonelocation.dat
+
+# World SPN overrides list
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
