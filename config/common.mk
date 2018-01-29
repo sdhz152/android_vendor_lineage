@@ -85,6 +85,17 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
 
+ # USE V4A
+ifeq ($(WITH_V4A),true)
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/app/VIPER4Android.apk:system/app/VIPER4Android/VIPER4Android.apk
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/lib/soundfx/libv4a.so:system/lib/soundfx/libv4a.so
+else
+PRODUCT_PACKAGES += \
+    AudioFX
+endif
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
@@ -136,7 +147,6 @@ PRODUCT_PACKAGES += \
 
 # Custom Lineage packages
 PRODUCT_PACKAGES += \
-    AudioFX \
     LineageSettingsProvider \
     LineageSetupWizard \
     Eleven \
