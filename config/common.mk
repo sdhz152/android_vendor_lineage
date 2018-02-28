@@ -141,7 +141,7 @@ PRODUCT_PACKAGES += \
     LineageSetupWizard \
     Eleven \
     ExactCalculator \
-    Jelly \
+    PhoneLocationProvider \
     LockClock \
     Trebuchet \
     Updater \
