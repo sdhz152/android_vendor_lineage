@@ -87,8 +87,9 @@ PRODUCT_COPY_FILES += \
 
  # USE V4A
 ifeq ($(WITH_V4A),true)
-PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/app/VIPER4Android.apk:system/app/VIPER4Android/VIPER4Android.apk
+PRODUCT_PACKAGES += \
+    VIPER4Android
+
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/lib/soundfx/libv4a.so:system/lib/soundfx/libv4a.so
 else
