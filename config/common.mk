@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     ForceStop \
     Trebuchet \
+    SMWeatherProvider \
     Updater \
     WallpaperPicker \
     WeatherProvider
