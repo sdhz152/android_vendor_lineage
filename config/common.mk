@@ -148,6 +148,7 @@ PRODUCT_PACKAGES += \
 
 # Custom Lineage packages
 PRODUCT_PACKAGES += \
+    CMFileManager \
     LineageSettingsProvider \
     LineageSetupWizard \
     Eleven \
