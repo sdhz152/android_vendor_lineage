@@ -154,6 +154,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     PhoneLocationProvider \
     LockClock \
+    ForceStop \
     Trebuchet \
     Updater \
     WallpaperPicker \
