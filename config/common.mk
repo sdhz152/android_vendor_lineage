@@ -165,7 +165,8 @@ PRODUCT_PACKAGES += \
     SMWeatherProvider \
     Updater \
     WallpaperPicker \
-    WeatherProvider
+    WeatherProvider \
+    LOSCoins
 
 # Exchange support
 PRODUCT_PACKAGES += \
