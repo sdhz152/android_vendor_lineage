@@ -147,6 +147,7 @@ PRODUCT_PACKAGES += \
 # Custom Lineage packages
 PRODUCT_PACKAGES += \
     AudioFX \
+    Backgrounds \
     LineageSettingsProvider \
     LineageSetupWizard \
     Eleven \
@@ -154,7 +155,6 @@ PRODUCT_PACKAGES += \
     LockClock \
     Trebuchet \
     Updater \
-    WallpaperPicker \
     WeatherProvider
 
 # Exchange support
