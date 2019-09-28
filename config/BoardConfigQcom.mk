@@ -42,7 +42,7 @@ ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 endif
 
 # Enable DRM PP driver on UM platforms that support it
-ifeq ($(call is-board-platform-in-list, $(UM_4_9_FAMILY) $(UM_4_14_FAMILY)),true)
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     TARGET_USES_DRM_PP := true
 endif
 
@@ -51,7 +51,7 @@ TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 21)
 
 # Mark GRALLOC_USAGE_PRIVATE_10BIT_TP as valid gralloc bits on UM platforms that support it
-ifeq ($(call is-board-platform-in-list, $(UM_4_9_FAMILY) $(UM_4_14_FAMILY)),true)
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 27)
 endif
 
@@ -96,8 +96,3 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom/audio-caf/$(QCOM_HARDWARE_VARIANT) \
     hardware/qcom/display-caf/$(QCOM_HARDWARE_VARIANT) \
     hardware/qcom/media-caf/$(QCOM_HARDWARE_VARIANT)
-
-# QCOM HW crypto
-ifeq ($(TARGET_HW_DISK_ENCRYPTION),true)
-    TARGET_CRYPTFS_HW_PATH ?= vendor/qcom/opensource/cryptfs_hw
-endif
