@@ -40,6 +40,13 @@ PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
+# Phonelocation!
+PRODUCT_COPY_FILES +=  \
+    vendor/lineage/prebuilt/common/media/location/suda-phonelocation.dat:system/media/location/suda-phonelocation.dat
+# World SPN overrides list
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
+
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
     vendor/lineage/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
@@ -127,6 +134,10 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Exchange2 \
     Terminal
+
+# LocationProvider
+PRODUCT_PACKAGES += \
+    PhoneLocationProvider
 
 # Lineage packages
 PRODUCT_PACKAGES += \
