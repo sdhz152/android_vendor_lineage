@@ -42,35 +42,6 @@ fi
 return 1
 }
 
-check_blacklist() {
-  if [ -f $S/addon.d/blacklist -a -d /$1/addon.d/ ]; then
-      ## Discard any known bad backup scripts
-      for f in /$1/addon.d/*sh; do
-          [ -f $f ] || continue
-          s=$(md5sum $f | cut -c-32)
-          grep -q $s $S/addon.d/blacklist && rm -f $f
-      done
-  fi
-}
-
-check_whitelist() {
-  found=0
-  if [ -f $S/addon.d/whitelist ];then
-      ## forcefully keep any version-independent stuff
-      cd /$1/addon.d/
-      for f in *sh; do
-          s=$(md5sum $f | cut -c-32)
-          grep -q $s $S/addon.d/whitelist
-          if [ $? -eq 0 ]; then
-              found=1
-          else
-              rm -f $f
-          fi
-      done
-  fi
-  return $found
-}
-
 # Execute /system/addon.d/*.sh scripts with $1 parameter
 run_stage() {
 if [ -d /tmp/addon.d/ ]; then
@@ -110,13 +81,10 @@ case "$1" in
   backup)
     mount_system
     mkdir -p $C
-    if check_prereq; then
-        if check_whitelist $S; then
-            unmount_system
-            exit 127
-        fi
-    fi
-    check_blacklist $S
+    if ! check_prereq; then
+      unmount_system
+      exit 127
+    end
     preserve_addon_d
     run_stage pre-backup
     run_stage backup
@@ -125,13 +93,10 @@ case "$1" in
   ;;
   restore)
     mount_system
-    if check_prereq; then
-        if check_whitelist tmp; then
-            unmount_system
-            exit 127
-        fi
-    fi
-    check_blacklist tmp
+    if ! check_prereq; then
+      unmount_system
+      exit 127
+    end
     run_stage pre-restore
     run_stage restore
     run_stage post-restore
